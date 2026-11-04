@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>Силуэт</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
+  :root { color-scheme: dark; --ink:#e8e6e3; --muted:#77736f; }
+  * { box-sizing:border-box; }
+  html { min-height:100%; background:#050505; }
+  body {
+    margin:0; min-height:100vh; overflow-x:hidden; background:#050505; color:var(--ink);
+    font-family:Manrope,Arial,sans-serif; display:grid; place-items:center;
+  }
+  body::before {
+    content:""; position:fixed; inset:-30%; pointer-events:none; opacity:.19;
+    background:radial-gradient(ellipse at 50% 48%, #252126 0%, transparent 47%);
+    filter:blur(70px); animation: atmosphere 14s ease-in-out infinite alternate;
+  }
+  .grain {
+    position:fixed; inset:0; pointer-events:none; opacity:.055; z-index:2;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+  }
+  main { position:relative; z-index:1; width:min(900px, calc(100% - 48px)); padding:100px 0 90px; }
+  .eyebrow {
+    margin:0 0 42px; color:#625e5c; font-size:10px; letter-spacing:.42em;
+    text-transform:uppercase; animation: appear 1.8s both;
+  }
+  .poem { display:flex; flex-direction:column; gap:clamp(18px,3.1vh,31px); }
+  .line {
+    margin:0; max-width:850px; font-size:clamp(19px,3.1vw,32px); line-height:1.48;
+    font-weight:500; letter-spacing:-.045em; color:#d8d5d2;
+    opacity:0; filter:blur(13px); transform:translateY(12px);
+    animation: resolve 2s cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay:calc(var(--i) * 420ms + 250ms);
+    text-shadow:0 0 24px rgba(220,210,220,.12);
+  }
+  .line:nth-child(5), .line:nth-child(8) { color:#aaa4a2; }
+  .line:nth-child(9) { color:#8c8587; }
+  .pause { height:clamp(12px,2.8vh,27px); }
+  .line.emphasis { font-weight:600; }
+  footer {
+    display:flex; justify-content:space-between; align-items:center; margin-top:76px;
+    color:#4f4b4a; font-size:9px; letter-spacing:.28em; text-transform:uppercase;
+    opacity:0; animation:appear 2s 5.8s forwards;
+  }
+  .pulse { width:5px;height:5px;border-radius:50%;background:#777078;box-shadow:0 0 12px #a69aa9;animation:pulse 3s infinite; }
+  @keyframes resolve {
+    0% { opacity:0; filter:blur(13px); transform:translateY(12px); }
+    55% { opacity:.88; filter:blur(1.8px); }
+    100% { opacity:1; filter:blur(.45px); transform:translateY(0); }
+  }
+  @keyframes appear { to { opacity:1; } }
+  @keyframes atmosphere { from { transform:translate(-2%,1%) scale(.94); } to { transform:translate(2%,-1%) scale(1.08); } }
+  @keyframes pulse { 50% { opacity:.35; box-shadow:0 0 3px #a69aa9; } }
+  @media (max-width:600px) {
+    main { width:calc(100% - 38px); padding:76px 0 64px; }
+    .eyebrow { margin-bottom:34px; }
+    .line { font-size:clamp(18px,5vw,25px); line-height:1.55; }
+    footer { margin-top:58px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,*::before,*::after { animation-duration:.01ms !important; animation-delay:0ms !important; }
+    .line,footer { opacity:1; filter:none; transform:none; }
+  }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<main>
+  <p class="eyebrow">unmd / sns</p>
+  <section class="poem" aria-label="Текст">
+    <p class="line" style="--i:0">Сам не заметил то, как начал постепенно умирать</p>
+    <p class="line" style="--i:1">Так заигрался в этот образ, но не думал, что взаправду могу её потерять</p>
+    <p class="line" style="--i:2">Скрести пальцы на руках, сука, я знаю, пиздишь</p>
+    <p class="line" style="--i:3">Любишь меня просто так, но зачем смотришь на кисть?</p>
+    <p class="line" style="--i:4">Нет, не буду это пить, я год уже чист</p>
+    <p class="line" style="--i:5">Если будешь стоять рядом, лучше просто заткнись</p>
+    <div class="pause" aria-hidden="true"></div>
+    <p class="line emphasis" style="--i:6">Только одна проблема:</p>
+    <p class="line" style="--i:7">Я забываю всё, что было, кроме силуэта</p>
+    <p class="line" style="--i:8">Ты одна, не хочешь слышать правду</p>
+    <p class="line" style="--i:9">Так заблюрь все мои работы навсегда</p>
+  </section>
+  <footer><span>silhouette</span><span class="pulse" aria-hidden="true"></span><span>04:—</span></footer>
+</main>
+</body>
+</html>
